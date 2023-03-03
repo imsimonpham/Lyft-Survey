@@ -1,0 +1,463 @@
+<!-- Valid in amp dev -->
+
+<!DOCTYPE html>
+<html ⚡4email data-css-strict>
+  <head>
+    <meta charset="utf-8" />
+    <style amp4email-boilerplate>body{visibility:hidden}</style>
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <script
+      async
+      custom-element="amp-bind"
+      src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"
+    ></script>
+    <script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.2.js"></script>
+    <script
+      async
+      custom-element="amp-form"
+      src="https://cdn.ampproject.org/v0/amp-form-0.1.js"
+    ></script>
+  
+    <style amp-custom>
+      body {
+        visibility: hidden;
+        max-width: 600px;
+        font-family: 'Arial', sans-serif;
+        max-width: 640px;
+        width: 100%;
+        background-color: #fff;
+        font-size: 14px;
+        line-height: 21px;
+        color: #373737;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        display: flex;
+        justify-content: center;
+        background-color: #F6F7FB;
+      }
+
+      .email_body {
+        padding: 20px 30px
+      }
+
+      .survey_section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px 0 0;
+      }
+
+      .survey {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: space-between;
+        font-size: 12px;
+        margin-top: 30px;
+        width: 100%;
+      }
+
+      .survey_question {
+        font-size: 16px;
+        line-height: 100%;
+        letter-spacing: 0.025em;
+        margin-bottom: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
+        color: #373737;
+        text-align: center;
+        font-size: 20px;
+        line-height: 33px;
+        margin-top: 0;
+      }
+
+      .survey_options {
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+        width: 100%;
+      }
+
+      .survey_option_text{
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .comment_box{
+        width: 100%;
+        border: 1px solid #DDDBDA;
+        border-radius: 4px;  
+        resize: none; 
+        padding: 15px;
+        font-family: Arial, sans-serif;
+      }
+
+      .btn_submit {
+        background: #FF00BF;
+        border: none;
+        outline: none;
+        width: 100px;
+        border-radius: 25px;
+        padding: 15px 18px;
+        font-weight: bold;
+        font-size: 1em;
+        cursor: pointer;
+        display: block;
+        margin: 20px auto 0;
+        color: #ffffff;
+        font-size: 16px;
+      }
+
+      .btn_submit_disabled{
+        background: #FF00BF;
+        border: none;
+        outline: none;
+        width: 100px;
+        border-radius: 25px;
+        padding: 15px 18px;
+        font-weight: bold;
+        font-size: 1em;
+        display: block;
+        margin: 20px auto 0;
+        color: #ffffff;
+        opacity: 0.6;
+        font-size: 16px;
+        text-align: center;
+      }
+
+      .btn_submit.shown {
+        display: block;
+      }
+
+      .btn_circle {
+        background: #ffffff;
+        border: 2px solid #ED1EB6;
+        outline: none;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        position: relative;
+        font-size: 16px;
+        font-weight: bold;
+      }
+
+      .btn_circle:hover{
+        background: #ED1EB6;
+        border: none;
+      }
+
+      .btn_circle:hover span{
+        color: #ffffff;
+        
+      }
+
+      .btn_circle.one.selected,
+      .btn_circle.two.selected,
+      .btn_circle.three.selected,
+      .btn_circle.four.selected,
+      .btn_circle.five.selected,
+      .btn_circle.six.selected,
+      .btn_circle.seven.selected,
+      .btn_circle.eight.selected,
+      .btn_circle.nine.selected,
+      .btn_circle.ten.selected {
+        background: #ED1EB6;
+        border: none;
+      }
+
+      .btn_circle.one.selected span,
+      .btn_circle.two.selected span,
+      .btn_circle.three.selected span,
+      .btn_circle.four.selected span,
+      .btn_circle.five.selected span,
+      .btn_circle.six.selected span,
+      .btn_circle.seven.selected span,
+      .btn_circle.eight.selected span,
+      .btn_circle.nine.selected span,
+      .btn_circle.ten.selected span {
+        color: #ffffff;
+      }
+
+      .btn_circle span {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #ED1EB6;
+      }
+
+      .divider {
+        height: 1px;
+        background-color: #F0F0F0;
+        margin: 30px auto;
+      }
+
+      #rendered-message-amp-form-0{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .check_img_container{
+        width: 50px;
+        height: 50px;
+      }
+
+      .hide {
+        display: none;
+      }
+
+      .show {
+        display: block;
+      }
+
+      .upper_footer{
+        font-weight: bold;
+      }
+
+      .lower_footer{
+        font-weight: bold; 
+        color: #bebebe
+      }
+
+      .msg{
+        font-size: 18px;
+        line-height: 25px;
+      }
+
+      .msg p{
+        margin-bottom: 0
+      }
+
+      @media only screen and (max-width: 480px) {
+        .email_body {
+          padding-left: 15px;
+          padding-right: 15px;
+        }
+
+        .survey_options {
+         flex-direction: column;
+         align-items: center;
+        }
+
+        .btn_circle{
+          margin-bottom: 20px;
+          border-radius: 5px;
+          width: 100px;
+        }
+
+        .survey_option_text{
+          display: none;
+        }
+      }
+
+      
+    </style>
+  </head>
+
+  <body>
+    <div class="banner">
+      <amp-img
+        alt="banner"
+        src="https://image.s10.sfmc-content.com/lib/fe3411717064057d731372/m/1/2dc7b3b8-fd05-49c7-afcf-377ad77bea2e.png"
+        width="600"
+        height="309"
+        layout="responsive">
+      </amp-img>
+    </div>
+    <div class="email_body">
+      <div class="divider"></div>
+      <div class="form_content" [class]="submitted == true ? 'hide' : 'form_content'">
+        <div class="survey_section">
+          <p class="survey_question">
+            How likely are you to recommend <b>Lyft</b> to a friend or colleague?
+          </p>
+          <div class="survey"> 
+            <div class="survey_options">
+              <button
+                name="rating"
+                value=1
+                class="btn_circle one"
+                [class]="rating == 1 ? 'btn_circle one selected' : 'btn_circle one'"
+                on="tap:AMP.setState({rating: 1, feedbackInput: 'show', msg: 'sorry',btn_submit: 'enabled' })"
+              >
+                <span>1</span>
+              </button>
+              <button
+                name="rating"
+                value=2
+                class="btn_circle two"
+                [class]="rating == 2 ? 'btn_circle two selected' : 'btn_circle two'"
+                on="tap:AMP.setState({rating: 2, feedbackInput: 'show', msg: 'sorry',btn_submit: 'enabled' })"
+              >
+                <span>2</span>
+              </button>
+              <button
+                name="rating"
+                value=3
+                class="btn_circle three"
+                [class]="rating == 3 ? 'btn_circle three selected' : 'btn_circle three'"
+                on="tap:AMP.setState({rating: 3, feedbackInput: 'show', msg: 'sorry',btn_submit: 'enabled' })"
+              >
+                <span>3</span>
+              </button>
+              <button
+              name="rating"
+              value=4
+              class="btn_circle four"
+                [class]="rating == 4 ? 'btn_circle four selected' : 'btn_circle four'"
+                on="tap:AMP.setState({rating: 4, feedbackInput: 'show', msg: 'sorry',btn_submit: 'enabled' })"
+              >
+                <span>4</span>
+              </button>
+              <button
+              name="rating"
+              value=5
+              class="btn_circle five"
+                [class]="rating == 5 ? 'btn_circle five selected' : 'btn_circle five'"
+                on="tap:AMP.setState({rating: 5, feedbackInput: 'show', msg: 'sorry',btn_submit: 'enabled' })"
+              >
+                <span>5</span>
+              </button>
+              <button
+              name="rating"
+              value=6
+              class="btn_circle six"
+                [class]="rating == 6 ? 'btn_circle six selected' : 'btn_circle six'"
+                on="tap:AMP.setState({rating: 6, feedbackInput: 'show', msg: 'sorry',btn_submit: 'enabled' })"
+              >
+                <span>6</span>
+              </button>
+              <button
+              name="rating"
+              value=7
+              class="btn_circle seven"
+                [class]="rating == 7 ? 'btn_circle seven selected' : 'btn_circle seven'"
+                on="tap:AMP.setState({rating: 7, feedbackInput: 'show', msg: 'sorry',btn_submit: 'enabled' })"
+              >
+                <span>7</span>
+              </button>
+              <button
+              name="rating"
+              value=8
+              class="btn_circle eight"
+                [class]="rating == 8 ? 'btn_circle eight selected' : 'btn_circle eight'"
+                on="tap:AMP.setState({rating: 8, feedbackInput: 'show', msg: 'sorry',btn_submit: 'enabled' })"
+              >
+                <span>8</span>
+              </button>
+              <button
+              name="rating"
+              value=9
+              class="btn_circle nine"
+                [class]="rating == 9 ? 'btn_circle nine selected' : 'btn_circle nine'"
+                on="tap:AMP.setState({rating: 9, feedbackInput: 'show', msg: 'satisfied', btn_submit: 'enabled' })"
+              >
+                <span>9</span>
+              </button>
+              <button
+              name="rating"
+              value=10
+              class="btn_circle ten"
+                [class]="rating == 10 ? 'btn_circle ten selected' : 'btn_circle ten'"
+                on="tap:AMP.setState({rating: 10, feedbackInput: 'show', msg: 'satisfied', btn_submit: 'enabled' })"
+              >
+                <span>10</span>
+              </button>
+            </div>       
+            <div class="survey_option_text">
+              <span>NOT AT ALL LIKELY</span>
+              <span>EXTREMELY LIKELY</span>
+            </div>
+          </div>
+        </div>
+        <div class="divider"></div> 
+    </div>
+    <form class="form" action-xhr="https://mc-yfyyj2sjhsjhkwc1s8w4zrxx4.pub.sfmc-content.com/xmxfvdzg1zt"
+        method="post" on="submit:AMP.setState({submitted: true})">
+        <div class="" [class]="submitted == true ? 'hide' : ''">
+          <!-- Message block starts-->
+          <div class="hide" [class]="feedbackInput == 'show' ? 'show' : 'hide'">
+          <p class="hide" [class]="msg == 'sorry' ? 'show' : 'hide'">
+            We’re sorry you were not satisfied with LYFT. What specifically didn’t you like about your experience?
+          </p>
+          <p class="hide" [class]="msg == 'satisfied' ? 'show' : 'hide'">
+            We’re happy to know that you are satisfied with LYFT.  What specifically did you like about your experience?
+          </p>
+          <textarea name="feedback" rows="8" class="comment_box" placeholder="Type your comments here"></textarea>
+          </div>
+          <!-- Message block ends--> 
+          <input type="hidden" name="sk" value="abc123"/> 
+          <input type="hidden" name="rating" [value]="rating"/> 
+          <p class="btn_submit_disabled" [class]="btn_submit == 'enabled' ? 'hide' : 'btn_submit_disabled' ">Submit</p>
+          <button
+            class="hide"
+            [class]="btn_submit == 'enabled' ? 'btn_submit' : 'hide' "
+            type="submit"
+            on="tap: submit"
+            >
+              Submit
+          </button>
+        </div>
+        <div class="msg" submitting>
+          <p>SUBMITTING...</p>
+        </div>
+       <div class="msg" submit-success>
+          <template type="amp-mustache">
+             <div class="check_img_container">
+                <amp-img
+                alt="check icon"
+                src="https://image.s10.sfmc-content.com/lib/fe3411717064057d731372/m/1/90aa5c97-ce55-455d-9c35-03aa3d84017d.png"
+                width="50"
+                height="50"
+                layout="responsive">
+                </amp-img>
+             </div>
+             <p>THANK YOU<br>
+              for your valuable feedback!
+              </p>
+              <div class="divider" style="width: 100%"></div>
+          </template>
+       </div>
+       <div class="msg" submit-error>
+        <template type="amp-mustache">
+            <div class="check_img_container">
+              <amp-img
+              alt="cancel icon"
+              src="https://image.s10.sfmc-content.com/lib/fe3411717064057d731372/m/1/ec4b4605-a4c5-43b6-b196-cda6a4a5920a.png"
+              width="50"
+              height="50"
+              layout="responsive">
+              </amp-img>
+            </div>
+            <p>SORRY<br>
+            Something went wrong!
+            </p>
+            <div class="divider" style="width: 100%"></div>
+        </template>
+       </div>
+      </form>
+    
+    <div class="footer">
+      <div class="upper_footer">
+        <p>Thank you for being part of the Lyft commnunity!<br>
+        The Lyft Team
+        </p>
+      </div>
+      <div class="divider"></div>
+      <div class="lower_footer">
+        <p>You've received this email because you recently took or gave a ride with Lyft.</p>
+        <p>185 Berry St, Ste 5000, San Francisco, CA 94107</p>
+        <p>&#169; 2018 Lyft, Inc.</p>
+      </div>
+    </div>
+  </body>
+</html>
