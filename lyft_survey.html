@@ -11,7 +11,6 @@
       custom-element="amp-bind"
       src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"
     ></script>
-    <script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.2.js"></script>
     <script
       async
       custom-element="amp-form"
@@ -199,16 +198,17 @@
         margin: 30px auto;
       }
 
-      #rendered-message-amp-form-0{
+      .msg {
         display: flex;
         flex-direction: column;
         align-items: center;
-        text-align: center;
+        text-align: center
       }
 
       .check_img_container{
         width: 50px;
         height: 50px;
+        margin: 0 auto
       }
 
       .hide {
@@ -411,38 +411,34 @@
           <p>SUBMITTING...</p>
         </div>
        <div class="msg" submit-success>
-          <template type="amp-mustache">
-             <div class="check_img_container">
-                <amp-img
-                alt="check icon"
-                src="https://image.s10.sfmc-content.com/lib/fe3411717064057d731372/m/1/90aa5c97-ce55-455d-9c35-03aa3d84017d.png"
-                width="50"
-                height="50"
-                layout="responsive">
-                </amp-img>
-             </div>
-             <p>THANK YOU<br>
-              for your valuable feedback!
-              </p>
-              <div class="divider" style="width: 100%"></div>
-          </template>
+          <div class="check_img_container">
+            <amp-img
+            alt="check icon"
+            src="https://image.s10.sfmc-content.com/lib/fe3411717064057d731372/m/1/90aa5c97-ce55-455d-9c35-03aa3d84017d.png"
+            width="50"
+            height="50"
+            layout="responsive">
+            </amp-img>
+          </div>
+          <p>THANK YOU<br>
+          for your valuable feedback!
+          </p>
+          <div class="divider" style="width: 100%"></div>
        </div>
        <div class="msg" submit-error>
-        <template type="amp-mustache">
-            <div class="check_img_container">
-              <amp-img
-              alt="cancel icon"
-              src="https://image.s10.sfmc-content.com/lib/fe3411717064057d731372/m/1/ec4b4605-a4c5-43b6-b196-cda6a4a5920a.png"
-              width="50"
-              height="50"
-              layout="responsive">
-              </amp-img>
-            </div>
-            <p>SORRY<br>
-            Something went wrong!
-            </p>
-            <div class="divider" style="width: 100%"></div>
-        </template>
+          <div class="check_img_container">
+            <amp-img
+            alt="cancel icon"
+            src="https://image.s10.sfmc-content.com/lib/fe3411717064057d731372/m/1/ec4b4605-a4c5-43b6-b196-cda6a4a5920a.png"
+            width="50"
+            height="50"
+            layout="responsive">
+            </amp-img>
+          </div>
+          <p>SORRY<br>
+          Something went wrong!
+          </p>
+          <div class="divider" style="width: 100%"></div>
        </div>
       </form>
     
